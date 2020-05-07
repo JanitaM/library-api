@@ -6,13 +6,17 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import SearchIcon from '@material-ui/icons/Search';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
+  main: {
+    backgroundColor: '#1A2669'
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
+  root: {
+    flexGrow: 1
+  },
+  button: {
+    marginLeft: theme.spacing(2)
   },
   title: {
     flexGrow: 1,
@@ -61,22 +65,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar({ setQuery }) {
+export default function Navbar({ setQuery, setToggle, toggle }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar className={classes.main} position="static">
         <Toolbar>
-          <LocalLibraryIcon></LocalLibraryIcon>
           <Typography className={classes.title} variant="h6" noWrap>
-            Library API
+            <LocalLibraryIcon></LocalLibraryIcon> Library API
           </Typography>
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase onChange={(event) => setQuery(event.target.value)}
+            <InputBase
+              onChange={event => setQuery(event.target.value)}
               placeholder="Enter Subject..."
               classes={{
                 root: classes.inputRoot,
@@ -85,6 +90,11 @@ export default function Navbar({ setQuery }) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+
+          <Button
+            className={classes.button} variant="contained"
+            color="primary"
+            onClick={() => setToggle(!toggle)}>Search</Button>
         </Toolbar>
       </AppBar>
     </div>

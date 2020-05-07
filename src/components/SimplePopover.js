@@ -25,15 +25,10 @@ export default function SimplePopover({ book }) {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-  if (book.subject.length === 0) {
-
-  }
-
-
   return (
     <div>
       <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
-        Related Subjects
+        {book.subject.length > 0 ? 'Related Subjects' : 'No Related Subjects Found'}
       </Button>
       <Popover
         id={id}

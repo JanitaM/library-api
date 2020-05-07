@@ -10,7 +10,8 @@ const useStyles = makeStyles({
   root: {
     maxWidth: '80%',
     margin: '1rem auto',
-    border: '1px solid #ccc'
+    border: '1px solid #ccc',
+    textAlign: 'center'
   },
   bullet: {
     display: 'inline-block',
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
   },
   pos: {
     marginBottom: 12,
-  },
+  }
 });
 
 export default function SimpleCard({ book, setBooks }) {
@@ -35,9 +36,12 @@ export default function SimpleCard({ book, setBooks }) {
         <Typography variant="h5" component="h2">
           {book.title}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          Author: {book.authors[0].name}
-        </Typography>
+        {book.authors[0] ?
+          <Typography className={classes.pos} color="textSecondary">
+            Author: {book.authors[0].name}
+          </Typography> :
+          <></>
+        }
         <Typography variant="body2" component="p">
           Editions: {book.edition_count}
         </Typography>

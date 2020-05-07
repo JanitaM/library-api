@@ -7,6 +7,7 @@ import Card from './components/Card';
 function App() {
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState(['suspense']);
+  const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
     async function getData() {
@@ -15,17 +16,20 @@ function App() {
       setBooks(response.data.works);
     }
     getData();
-  }, [query]);
+  }, [toggle]);
 
+  console.log(books)
   return (
-    <div className="App">
-      <Navbar query={query} setQuery={setQuery}></Navbar>
+    < div className="App" >
+      <Navbar toggle={toggle} setToggle={setToggle} setQuery={setQuery}></Navbar>
+
       {books.map(book => (
         <div key={book.cover_id}>
           <Card book={book} setBooks={setBooks}></Card>
         </div>
       ))}
-    </div>
+
+    </div >
   );
 }
 
