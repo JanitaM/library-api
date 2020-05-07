@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function SimpleCard({ book, setBooks }) {
+export default function SimpleCard({ book }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
